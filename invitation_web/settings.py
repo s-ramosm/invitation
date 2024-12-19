@@ -28,7 +28,7 @@ SECRET_KEY = "django-insecure-r_18vu1idi89o=lymg%bmy)ui9oj963qkx1a3&5q)%fhgmigwa
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["192.168.1.18", "localhost"]
+ALLOWED_HOSTS = ["invitation-pncf.onrender.com"]
 
 
 # Application definition
