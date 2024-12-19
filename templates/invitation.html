@@ -1,0 +1,461 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invitación</title>
+    <style>
+        @font-face {
+            font-family: 'MiFuentePersonalizada'; /* Nombre que usarás en CSS */
+            src: url("{% static 'fonts/ChristmasCarolPersonalRegular-lgzPD.otf' %}") format('opentype'); /* Fuente comprimida */
+            font-weight: normal; /* Opcional: peso de la fuente */
+            font-style: normal; /* Opcional: estilo de la fuente */
+        }
+
+        body {
+            background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 73%, rgba(9,9,121,1) 100%, rgba(0,212,255,1) 100%);
+            height: 100vh; /* Asegura que cubra toda la pantalla */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+
+
+        .card{
+            min-width: 50%;
+            min-height: 50%;
+            background-color: #8e0103;
+            justify-content: center;
+            text-align: center;
+            align-items: center;
+            flex-direction: column;
+            display: flex;
+            font-size: 128px;
+            font-family: 'MiFuentePersonalizada';
+            color: aliceblue;
+            border-radius: 8px;
+            -webkit-box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            -moz-box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            transform: translateY(50%);
+        }
+
+        .card-info{
+            min-width: 50%;
+            max-width: 50%;
+            background-color: #ffffff;
+            justify-content: start;
+            flex-direction: column;
+            text-align:center;
+            align-items:start;
+            display: flex;
+            font-size: 32px;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            color:#8e0103;
+            border-radius: 8px;
+            -webkit-box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            -moz-box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            box-shadow: 10px 10px 86px -29px rgba(255,255,255,1);
+            transform: translateY(-250%) translateX(10%);
+
+            padding: 32px;
+        }
+
+        .card-info p{
+            background-color: #ffffff;
+            font-size: 24px;
+        }
+
+        #card_front, #card_back, #events-container,  #itemsContainer{
+            transition: transform 0.5s ease-in-out; /* Definir la transición */
+        }
+        
+        .info_max_container{
+            display: flex;
+            flex-direction: row;
+        }
+        #events-container{
+            transform: translateX(-100%);
+            /* background-color: #333f6b; */
+            border-radius: 8px;
+        }
+
+        .event-item{
+            padding: 16px;
+            border-radius: 8px;
+            margin: 8px;
+            background-color: #ffffff;
+        }
+
+        #events-container h3{
+            color: #ffffff;
+        }
+
+        .item{
+            background-color: #ffffff;
+            border-radius: 8px;
+            margin: 8px;
+            padding: 8px;
+            font-family: Georgia, Times, 'Times New Roman', serif;
+            width: auto;
+            display: inline-block;
+        }
+
+        .item img{
+            min-width: 100px;
+            min-height: 100px;
+            max-width: 100px;
+            max-height: 100px;
+            object-fit: cover;
+        }
+
+        #itemsContainer{
+            margin: 32px;
+            padding: 32px;
+            background-color: #464d56;
+            border-radius: 8px;
+            transform: translateX(-100%);
+            display: none;
+            width: 100%;
+        }
+
+        #itemsContainer h3{
+            color: #ffffff;
+        }
+
+        button{
+            appearance: none;
+            background-color: #2ea44f;
+            border: 1px solid rgba(27, 31, 35, .15);
+            border-radius: 6px;
+            box-shadow: rgba(27, 31, 35, .1) 0 1px 0;
+            box-sizing: border-box;
+            color: #fff;
+            cursor: pointer;
+            display: inline-block;
+            font-family: -apple-system,system-ui,"Segoe UI",Helvetica,Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji";
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 20px;
+            padding: 6px 16px;
+            position: relative;
+            text-align: center;
+            text-decoration: none;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: middle;
+            white-space: nowrap;
+
+        }
+
+    </style>
+
+</head>
+<body>
+    <div class="card" id="card_front">
+           <p>Reunion Diciembre</p> 
+           <button onclick="seeInvitation()">Ver mas</button>
+    </div>
+
+    <div class="info_max_container">
+
+        <div id="events-container">
+        
+        </div>
+        <div id="itemsContainer">
+
+        </div>
+    
+        <div class="card-info" id="card_back">
+            <h3 style="margin: 0;">¡Con mucho gusto te invitamos a nuestra reunión de despedida de año! 🥳🥳🥳</h3>
+    
+            <p style="text-align: justify; color: black;">Únete a nosotros en este evento especial para celebrar juntos el cierre de un ciclo.</p> 
+            <p style="text-align: justify; color: black;">Será una ocasión perfecta para compartir entre amigos, reflexionar sobre lo vivido y brindar por los nuevos comienzos.</p>  
+            <p style="text-align: justify; color: black;">Te esperamos para disfrutar de un espacio ameno.  🌲 ❄️ ⛄ </p>
+            <p style="text-align: justify; color: black;">Calle 46 #3-22 Chapinero </p>
+             <div class="button_section">
+                <button onclick="fetchEvents()">Si voy</button> <button style="background-color: #ff4742;">No voy</button>
+             </div>
+        </div>
+
+    </div>
+
+    <dialog id="favDialog">
+        <form method="dialog">
+            <section>
+                <!-- Campo para seleccionar quién eres -->
+                <p>
+                    <label for="guest">¿Quién eres?:</label>
+                    <select id="guest">
+                        <option>Loading...</option> <!-- Placeholder mientras se carga -->
+                    </select>
+                </p>
+                
+                <!-- Campo para el password -->
+                <p>
+                    <label for="password">Contraseña:</label>
+                    <input type="password" id="password" name="password" required />
+                </p>
+            </section>
+            
+            <menu>
+                <button id="cancel" type="reset">Cancelar</button>
+                <button type="submit">Confirmar</button>
+            </menu>
+        </form>
+    </dialog>
+    
+
+    
+</body>
+<script>
+    let items = []
+
+    function fetchEvents() {
+            fetch('/api/events/')
+                .then(response => response.json()) // Convertir la respuesta a JSON
+                .then(events => {
+                    // Obtener el contenedor de eventos
+                    let eventsContainer = document.getElementById("events-container");
+                    let items_container = document.getElementById("itemsContainer");
+                    eventsContainer.innerHTML = '<h3>¿Desde cual evento vas a llegar?</h3>'; // Limpiar el contenedor antes de agregar los nuevos eventos
+                    
+
+                    // Iterar sobre la lista de eventos y agregar cada uno al HTML
+                    events.forEach(event => {
+
+
+                        // Obtener solo la hora (hh:mm) de start_time y end_time
+                        const startTime = new Date(event.start_time);
+                        const endTime = new Date(event.end_time);
+
+                        // Formatear las horas (hh:mm)
+                        const startHour = startTime.getHours().toString().padStart(2, '0');
+                        const startMinute = startTime.getMinutes().toString().padStart(2, '0');
+                        const endHour = endTime.getHours().toString().padStart(2, '0');
+                        const endMinute = endTime.getMinutes().toString().padStart(2, '0');
+
+                        const eventElement = document.createElement('div');
+                        eventElement.classList.add('event-item');
+                        eventElement.innerHTML = `
+                            <p class="title">
+                                <input type="checkbox" class="event-checkbox" id="event-${event.id}" onclick="handleCheckboxClick(${event.id})">
+                                ${event.name}
+                            </p>
+                            <p>${event.description}</p>
+                            <p><strong>Inicio:</strong> ${startHour}:${startMinute} 
+                            <br> <strong>Final:</strong> ${endHour}:${endMinute}</p>
+                        `;
+                        eventsContainer.appendChild(eventElement);
+                    });
+
+                    var card_back = document.getElementById("card_back");
+                    // Cambiar la propiedad transform de card_back
+                    card_back.style.transform = "translateX(200%)";
+                    card_back.style.display = "none"; 
+                    eventsContainer.style.transform = "translateX(10%)";
+                    items_container.style.transform = "translateX(0%)";
+                })
+                .catch(error => {
+                    console.error('Error al obtener los eventos:', error);
+                });
+        }
+
+
+    function seeInvitation(){
+        var card_front = document.getElementById("card_front");
+        var card_back = document.getElementById("card_back");
+        
+        // Cambiar la propiedad transform de card_back
+        card_back.style.transform = "translateY(0%) translateX(20%)"; // Aparece con la nueva posición
+        // Cambiar la propiedad transform de card_front
+        card_front.style.transform = "translateY(250%)"; // Mueve el card_front fuera de la vista
+        card_front.style.display = "none"
+        
+        // Si deseas revertir los cambios más tarde, puedes configurar el estilo nuevamente:
+        // card_back.style.transform = "translateY(-250%)";
+        // card_front.style.transform = "translateY(-50%)";
+    }
+
+    function handleCheckboxItemClick(item_id){
+        items.push(item_id)
+        console.log(items)
+    }
+
+    function send_answer(){
+        console.log("Enviando respuesta")
+        var favDialog = document.getElementById("favDialog");
+        favDialog.showModal();
+    }
+    
+    function handleCheckboxClick(eventId) {
+        // Obtener todos los checkboxes
+        const checkboxes = document.querySelectorAll('.event-checkbox');
+        
+        // Desmarcar todos los checkboxes
+        checkboxes.forEach(checkbox => {
+            if (checkbox.id !== `event-${eventId}`) {
+                checkbox.checked = false; // Desmarcar los demás checkboxes
+            }
+        });
+
+        console.log(`Checkbox for event ${eventId} clicked!`);
+    
+        // Hacer una solicitud fetch para obtener los items del evento
+        fetch(`/api/items/${eventId}/`)
+            .then(response => response.json())
+            .then(data => {
+                // Mostrar los items en el contenedor de items
+                let itemsContainer = document.getElementById('itemsContainer'); // Asumiendo que tienes un contenedor para los items
+                itemsContainer.style.display = "block"
+
+                // Limpiar el contenedor antes de agregar los nuevos items
+                itemsContainer.innerHTML = '';
+                let tittleElement = document.createElement('h3');
+                tittleElement.innerHTML = `Como parte de los enventos tenemos items que seria bueno que trajieras como parte de las actividades`
+                itemsContainer.appendChild(tittleElement)
+                // Recorrer los items y agregarlos al contenedor
+                data.forEach(item => {
+                    // Filtramos los items por el campo 'unique' siendo true
+                    if (item.unique === true) {
+                        const itemElement = document.createElement('div');
+                        itemElement.classList.add('item');
+                        itemElement.innerHTML = `
+                            <h4> 
+                                <p class="title">
+                                    <input type="checkbox" class="event-checkbox" id="item-${item.id}" onclick="handleCheckboxItemClick(${item.id})">
+                                    ${item.name}
+                                </p>
+                            </h4>
+                            <p>${item.description}</p>
+                            ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : ''}
+                        `;
+                        itemsContainer.appendChild(itemElement);
+
+                    }
+                });
+
+                let tittleElement2 = document.createElement('h3');
+                tittleElement2.innerHTML = `Tambien puedes traer alguno de estos items (Voluntariamente) para mejorar la experiencia`
+                itemsContainer.appendChild(tittleElement2)
+
+                data.forEach(item => {
+                    // Filtramos los items por el campo 'unique' siendo true
+                    if (item.unique === false) {
+                        const itemElement = document.createElement('div');
+                        itemElement.classList.add('item');
+                        itemElement.innerHTML = `
+                            <h4> 
+                                <p class="title">
+                                    <input type="checkbox" class="event-checkbox" id="item-${item.id}" onclick="handleCheckboxItemClick(${item.id})">
+                                    ${item.name}
+                                </p>
+                            </h4>
+                            <p>${item.description}</p>
+                            ${item.image ? `<img src="${item.image}" alt="${item.name}" />` : ''}
+                        `;
+                        itemsContainer.appendChild(itemElement);
+                    }
+                });
+
+
+                let button_send = document.createElement('button');
+                button_send.innerHTML = `Enviar Respuesta`
+                button_send.onclick = send_answer
+                itemsContainer.appendChild(button_send)
+            })
+            .catch(error => {
+                console.error('Error fetching items:', error);
+            });
+    }
+
+
+    async function cargarInvitados() {
+        const selectElement = document.getElementById('guest');
+        const dialog = document.getElementById('favDialog');
+        try {
+
+
+            let apiUrl = '/guests/' 
+            const response = await fetch(apiUrl);
+            
+            // Si la respuesta no es correcta (status distinto de 200), lanzamos un error
+            if (!response.ok) {
+                throw new Error('No se pudo obtener los datos');
+            }
+
+            // Convertimos la respuesta en formato JSON
+            const data = await response.json();
+
+            // Limpiar las opciones actuales y agregar nuevas
+            selectElement.innerHTML = '';  // Eliminar la opción de carga
+
+            // Agregar la opción por defecto
+            const optionDefault = document.createElement('option');
+            optionDefault.textContent = 'Selecciona quién eres';
+            selectElement.appendChild(optionDefault);
+
+            // Agregar cada invitado al <select>
+            data.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item.id;  // Suponiendo que 'id' es único
+                option.textContent = item.name;  // El nombre del invitado
+                selectElement.appendChild(option);
+            });
+        } catch (error) {
+            console.error('Error al cargar los invitados:', error);
+            selectElement.innerHTML = '<option>Error al cargar opciones</option>';
+        }
+    }
+
+    window.onload = cargarInvitados;
+
+
+    async function confirmarItems() {
+        const guestId = document.getElementById('guest').value;  // Obtener el ID del invitado desde el <select>
+        const password = document.getElementById('password').value; 
+
+        // Verificar que se haya seleccionado un invitado
+        if (!guestId) {
+            alert('Por favor selecciona un invitado.');
+            return;
+        }
+        
+        try {
+            const response = await fetch('/confirm-items/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    guest_id: guestId,
+                    item_ids: items,  // Enviar los IDs de los ítems seleccionados
+                    password: password
+                }),
+            });
+
+            const data = await response.json();
+            if (response.ok) {
+                alert('Ítems confirmados correctamente');
+            } else {
+                alert('Hubo un error: ' + data.detail);
+            }
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Hubo un error al procesar tu solicitud.');
+        }
+    }
+
+
+    document.querySelector('form').addEventListener('submit', function(event) {
+        event.preventDefault();
+        confirmarItems();  // Llamar a la función para confirmar ítems
+    });
+
+</script>
+</html>
