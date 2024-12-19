@@ -82,6 +82,13 @@
             transform: translateX(-100%);
             /* background-color: #333f6b; */
             border-radius: 8px;
+            max-height: 110%;
+            min-height: 110%;
+            overflow-y: hidden; /* Habilita el scroll vertical */
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            
         }
 
         .event-item{
@@ -89,6 +96,8 @@
             border-radius: 8px;
             margin: 8px;
             background-color: #ffffff;
+            max-width: 200px;
+            min-width: 200px;
         }
 
         #events-container h3{
@@ -152,6 +161,10 @@
             white-space: nowrap;
 
         }
+        .container_items{
+            display: flex;
+            flex-direction: column;
+        }
 
     </style>
 
@@ -164,12 +177,15 @@
 
     <div class="info_max_container">
 
-        <div id="events-container">
+        <div class="container_items">
+            <div id="events-container">
         
+            </div>
+            <div id="itemsContainer">
+    
+            </div>
         </div>
-        <div id="itemsContainer">
-
-        </div>
+        
     
         <div class="card-info" id="card_back">
             <h3 style="margin: 0;">¡Con mucho gusto te invitamos a nuestra reunión de despedida de año! 🥳🥳🥳</h3>
@@ -223,8 +239,13 @@
                     // Obtener el contenedor de eventos
                     let eventsContainer = document.getElementById("events-container");
                     let items_container = document.getElementById("itemsContainer");
-                    eventsContainer.innerHTML = '<h3>¿Desde cual evento vas a llegar?</h3>'; // Limpiar el contenedor antes de agregar los nuevos eventos
                     
+                    let eventElement = document.createElement('div');
+                    eventElement.classList.add('event-item');
+                    eventElement.innerHTML = `
+                            <h2>¿A CUAL DE LOS SIGUIENTES EVENTOS LLEGAS?</h2>
+                        `;
+                    eventsContainer.appendChild(eventElement);
 
                     // Iterar sobre la lista de eventos y agregar cada uno al HTML
                     events.forEach(event => {
@@ -259,6 +280,7 @@
                     card_back.style.transform = "translateX(200%)";
                     card_back.style.display = "none"; 
                     eventsContainer.style.transform = "translateX(10%)";
+                    eventsContainer.style.transform = "translateY(10%)";
                     items_container.style.transform = "translateX(0%)";
                 })
                 .catch(error => {
@@ -368,6 +390,9 @@
                 button_send.innerHTML = `Enviar Respuesta`
                 button_send.onclick = send_answer
                 itemsContainer.appendChild(button_send)
+
+                let eventsContainer = document.getElementById("events-container");
+                eventsContainer.style.display = "none"
             })
             .catch(error => {
                 console.error('Error fetching items:', error);
